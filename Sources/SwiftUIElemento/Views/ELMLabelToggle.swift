@@ -75,7 +75,9 @@ struct ELMLabelToggle_Previews: PreviewProvider {
     private struct ConsumerView: View {
         @State private var toggle: Bool = false
         var body: some View {
-            ELMLabelToggle(onColor: .orange, onSymbol: "star.fill", offSymbol: "star", toggle: $toggle, label: "Fav")
+            VStack {
+                ELMLabelToggle(onColor: .orange, onSymbol: "star.fill", offSymbol: "star", toggle: $toggle, label: "Fav")
+            }
         }
     }
     
