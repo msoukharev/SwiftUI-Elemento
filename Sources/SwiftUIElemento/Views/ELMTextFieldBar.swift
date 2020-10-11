@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 13.0, OSX 10.15, *)
 public struct ELMTextFieldBar: View {
     
-    @ObservedObject var editor: TextEditor
+    @ObservedObject var editor: ELMTextEditor
     
     var title: String
     
@@ -24,7 +24,7 @@ public struct ELMTextFieldBar: View {
     
     var onCommit: Optional<() -> Void>
     
-    public init(editor: TextEditor,
+    public init(editor: ELMTextEditor,
                 title: String = "",
                 symbol: String? = nil,
                 submitLabel: String? = nil,
@@ -120,7 +120,7 @@ public struct ELMTextFieldBar: View {
 
 @available(iOS 13.0, OSX 10.15, *)
 struct ELMTextFieldBar_Previews: PreviewProvider {
-    static let editor = TextEditor(content: "Initial content")
+    static let editor = ELMTextEditor(content: "Initial content")
     static var previews: some View {
         ELMTextFieldBar(editor: self.editor, title: "Search", symbol: "magnifyingglass", submitLabel: "Cancel", onSubmit: {print("LF")}, onEditingChanged: nil, onCommit: nil)
     }

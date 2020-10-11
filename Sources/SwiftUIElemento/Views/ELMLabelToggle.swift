@@ -51,7 +51,7 @@ public struct ELMLabelToggle: View {
         
         HStack {
             
-            image.transition(.sideslide(.leading))
+            image
             
             // Text label if any
             if let label = label, toggle {
