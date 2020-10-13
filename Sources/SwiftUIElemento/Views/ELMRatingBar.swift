@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 struct ELMRatingBar: View {
     
     struct InvalidValueError: Error {}

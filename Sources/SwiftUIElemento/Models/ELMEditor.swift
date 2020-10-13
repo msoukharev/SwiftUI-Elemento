@@ -20,8 +20,8 @@ public class ELMTextEditor: ELMEditor {
     
     @Published var content: String {
         didSet {
-            if let onContentChanged = self.onContentChanged {
-                onContentChanged(oldValue)
+            if let onChange = self.onChange {
+                onChange(oldValue)
             }
             self.isEmpty = self.content.isEmpty
         }
@@ -29,11 +29,11 @@ public class ELMTextEditor: ELMEditor {
     
     @Published var isEmpty: Bool
     
-    var onSubmit: Optional<() -> Void> = nil
+    var onChange: Optional<(String) -> Void>
     
-    var onCommit: Optional<() -> Void> = nil
+    var onReturn: Optional<(String) -> Void>
     
-    var onContentChanged: Optional<(String) -> Void> = nil
+    var onCancel: Optional<(String) -> Void>
     
     required public init(content: String) {
         self.content = content
