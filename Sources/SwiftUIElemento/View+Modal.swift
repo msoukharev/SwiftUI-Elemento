@@ -17,12 +17,10 @@ public extension View {
     func modal<Content: View>(active: Bool, @ViewBuilder content: @escaping () -> Content ) -> some View {
         
         return ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
-                
+            
             self
-            
-            
             active ? content() : nil
-                
+            
         }
     }
 }
