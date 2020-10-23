@@ -8,9 +8,9 @@
 import SwiftUI
 
 @available(OSX 10.15, *)
-extension AnyTransition {
+public extension AnyTransition {
     
-    public static func sideslide(_ edge: Edge) -> AnyTransition {
+    static func sideslide(_ edge: Edge) -> AnyTransition {
         return AnyTransition.asymmetric(insertion: .move(edge: edge), removal: .move(edge: edge))
     }
     

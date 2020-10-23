@@ -8,50 +8,32 @@
 import Foundation
 import SwiftUI
 
-@available(iOS 13.0, OSX 10.15, *)
+/**
+ Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
+ */
+@available(iOS 13.0, *)
 public struct ELMLabelToggle: View {
     
     @Binding var toggle: Bool
     
     var onColor: Color
     
-    var offSymbol: String
-    
-    var onSymbol: String
+    var symbol: String
     
     var label: String?
     
-    private var onImage: Image
-    private var offImage: Image
-    
     public init(onColor: Color, symbol: String, toggle: Binding<Bool>, label: String? = nil) {
-        self.init(onColor: onColor, onSymbol: symbol, offSymbol: symbol, toggle: toggle, label: label)
-    }
-    
-    public init(onColor: Color, onSymbol: String, offSymbol: String, toggle: Binding<Bool>, label: String? = nil) {
         self._toggle = toggle
         self.onColor = onColor
-        self.onSymbol = onSymbol
-        self.offSymbol = offSymbol
-        #if os(OSX)
-        self.onImage = Image(onSymbol)
-        self.offImage = Image(offSymbol)
-        #else
-        self.onImage = Image(systemName: self.onSymbol)
-        self.offImage = Image(systemName: self.offSymbol)
-        #endif
+        self.symbol = symbol
         self.label = label
-    }
-    
-    private var image: Image {
-        self.toggle ? onImage : offImage
     }
     
     public var body: some View {
         
         HStack {
             
-            image
+            FillableSymbol(symbol, filled: toggle)
             
             // Text label if any
             if let label = label, toggle {
@@ -76,7 +58,7 @@ struct ELMLabelToggle_Previews: PreviewProvider {
         @State private var toggle: Bool = false
         var body: some View {
             VStack {
-                ELMLabelToggle(onColor: .orange, onSymbol: "star.fill", offSymbol: "star", toggle: $toggle, label: "Fav")
+                ELMLabelToggle(onColor: .red, symbol: "star", toggle: $toggle, label: "Important")
             }
         }
     }
