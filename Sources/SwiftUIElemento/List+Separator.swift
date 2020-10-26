@@ -23,5 +23,4 @@ public extension List {
             $0.separatorColor = color
         })
     }
-    
 }
