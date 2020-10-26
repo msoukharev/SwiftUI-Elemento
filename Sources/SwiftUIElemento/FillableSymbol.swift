@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct FillableSymbol: View {
+@available(iOS 13.0, *)
+public struct FillableSymbol: View {
     
     private var filled: Bool
     
@@ -18,19 +19,22 @@ struct FillableSymbol: View {
         self.symbol = symbol
     }
     
+    
     public var body: Image {
+        
         let bareSymbolName = symbol.replacingOccurrences(of: ".fill", with: "")
         if filled {
             return Image(systemName: bareSymbolName + ".fill")
         } else {
             return Image(systemName: bareSymbolName)
         }
+        
     }
     
 }
 
 struct FillableSymbol_Previews: PreviewProvider {
     static var previews: some View {
-        FillableSymbol("star", filled: false)
+        FillableSymbol("star", filled: true)
     }
 }

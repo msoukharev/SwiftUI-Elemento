@@ -7,25 +7,34 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 public extension View {
     
-    // TODO: Add animation
     /**
     Modal overlaying the applied view
      */
-    func modal<Content: View>(active: Binding<Bool>, @ViewBuilder content: @escaping () -> Content ) -> ELMModal<Self, Content> {
+    func modal<Content: View>(active: Binding<Bool>, @ViewBuilder content: @escaping () -> Content ) -> ELMModalView<Self, Content> {
         
-        return ELMModal<Self, Content>(active: active, background: self, overlay: content)
+        return ELMModalView<Self, Content>(active: active, background: self, overlay: content)
     }
+    
+    func modal<Content: View>(modal: ELMModalView<Self, Content>) -> ELMModalView<Self, Content> {
+        
+        return modal
+        
+    }
+    
 }
 
-public struct ELMModal<Background: View, Overlay: View>: View {
+@available(iOS 13.0, *)
+public struct ELMModalView<Background: View, Overlay: View>: View {
     
     @Binding private var active: Bool
     private var backgroundView: Background
     private var overlayView: () -> Overlay
     
-    public init(active: Binding<Bool>, background: Background, @ViewBuilder overlay: @escaping () -> Overlay) {
+    init(active: Binding<Bool>, background: Background, @ViewBuilder overlay: @escaping () -> Overlay) {
+        
         self._active = active
         self.backgroundView = background
         self.overlayView = overlay
@@ -34,21 +43,34 @@ public struct ELMModal<Background: View, Overlay: View>: View {
     public var body: some View {
         
         ZStack {
+            
             if active {
                 
-                backgroundView
-                
-                overlayView().padding().background(Color(UIColor.systemBackground)).clipShape(RoundedRectangle(cornerRadius: 10)).border(Color.clear).shadow(radius: 20)
+                backgroundView.overlay(Color.primary.opacity(0.07))
+    
+                overlayView().modifier(WindowModifier())
                 
             } else {
                 
                 backgroundView.transition(.opacity).animation(.easeIn(duration: 0.1))
             
             }
+            
         }
     }
     
 }
+
+@available(iOS 13.0, *)
+public extension ELMModalView {
+    
+    enum OverlayEffect {
+        case none, shadow, blur
+    }
+    
+    // TODO: Implement custom background effects
+}
+
 
 fileprivate struct Consumer: View {
     

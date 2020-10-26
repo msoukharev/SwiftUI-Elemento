@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// TODO: Customizable expand/contract behavior
 /**
  Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
  */
@@ -51,7 +52,7 @@ public struct ELMLabelToggle: View {
     
 }
 
-@available(iOS 13.0, OSX 10.15.0, *)
+@available(iOS 13.0, *)
 struct ELMLabelToggle_Previews: PreviewProvider {
     
     private struct ConsumerView: View {

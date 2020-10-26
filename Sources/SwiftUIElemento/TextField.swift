@@ -11,11 +11,8 @@ import SwiftUI
 public struct ELMTextField: View {
 
     @Binding private var text: String
-    
     private var title: String
-
     private var onEditingChanged: Optional<(Bool) -> Void>
-
     private var onCommit: Optional<() -> Void>
 
     public init(title: String,
@@ -31,9 +28,9 @@ public struct ELMTextField: View {
     }
     
     private var symbol: String?
-    
     private var onSubmit: Optional<() -> Void> = nil
     private var submitLabel: String?
+    
     
     public var body: some View {
 
@@ -59,11 +56,16 @@ public struct ELMTextField: View {
                     //
                     TextField(title, text: $text, onEditingChanged: onEditingChanged ?? __nilEditChange, onCommit: onCommit ?? {}).padding(7)
 
-                    // Clear button
-                    clearSymbol
+                    
+                    if !text.isEmpty {
+                        Image(systemName: "xmark.circle.fill")
                         .imageScale(.small)
                         .padding(.horizontal, 15).foregroundColor(.secondary).onTapGesture(perform: {text = ""})
-                        .animation(nil)
+                            .transition(.identity)
+                    } else {
+                        EmptyView()
+                    }
+                   
 
                 }
 
@@ -76,7 +78,7 @@ public struct ELMTextField: View {
                 }
                 .transition(.sideslide(.trailing))
             }
-        }.animation(.easeIn(duration: 0.2)).frame(maxHeight: 40)
+        }.animation(.easeIn(duration: 0.1)).frame(maxHeight: 40)
 
     }
 
@@ -84,15 +86,13 @@ public struct ELMTextField: View {
         Void()
     }
     
-    private var clearSymbol: Image {
-
-        if !text.isEmpty {
-            return Image(systemName: "xmark.circle.fill")
-        } else {
-            return Image("")
-        }
-        
-    }
+//    private var clearSymbol: Image? {
+//        if !text.isEmpty {
+//            return Image(systemName: "xmark.circle.fill")
+//        } else {
+//            return nil
+//        }
+//    }
 
 }
 
@@ -107,7 +107,7 @@ extension ELMTextField {
         
     }
     
-    func onSubmit(label: String, action: @escaping () -> Void) -> Self {
+    func submit(label: String, action: @escaping () -> Void) -> Self {
         
         var s = self
         s.submitLabel = label
@@ -117,4 +117,21 @@ extension ELMTextField {
     }
     
 }
+
+fileprivate struct Consumer: View {
+    
+    @State private var text: String = "Initial text"
+    
+    var body: some View {
+        ELMTextField(title: "MyTextField", text: $text).barLabel(systemName: "magnifyingglass").submit(label: "Cancel", action: {text = ""})
+    }
+    
+}
+
+struct TextField_Previews: PreviewProvider {
+    static var previews: some View {
+        Consumer()
+    }
+}
+
 
