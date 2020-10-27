@@ -30,7 +30,7 @@ public struct ELMRatingBar: View {
         HStack(spacing: spacing) {
             ForEach(1..<6) { pos in
     
-                FillableSymbol(symbol, filled:
+                Image(systemName: symbol, fill:
                                   (pos > score ?? 0) ? false : true)
                     .scaleEffect(scale)
                     .onTapGesture {

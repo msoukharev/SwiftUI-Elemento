@@ -13,7 +13,7 @@ import SwiftUI
  Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
  */
 @available(iOS 13.0, *)
-public struct ELMLabelToggle: View {
+public struct ELMToggle: View {
     
     @Binding var toggle: Bool
     
@@ -34,7 +34,7 @@ public struct ELMLabelToggle: View {
         
         HStack {
             
-            FillableSymbol(symbol, filled: toggle)
+            Image(systemName: symbol, fill: toggle)
             
             // Text label if any
             if let label = label, toggle {
@@ -53,13 +53,13 @@ public struct ELMLabelToggle: View {
 }
 
 @available(iOS 13.0, *)
-struct ELMLabelToggle_Previews: PreviewProvider {
+struct ELMToggle_Previews: PreviewProvider {
     
     private struct ConsumerView: View {
         @State private var toggle: Bool = false
         var body: some View {
             VStack {
-                ELMLabelToggle(onColor: .red, symbol: "star", toggle: $toggle, label: "Important")
+                ELMToggle(onColor: .red, symbol: "star", toggle: $toggle, label: "Important")
             }
         }
     }

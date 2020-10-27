@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ Adds a border and a shadow around it to the modified view
+ */
 @available(iOS 13.0, *)
 public struct WindowModifier: ViewModifier {
     
