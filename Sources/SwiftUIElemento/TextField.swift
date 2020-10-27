@@ -38,17 +38,14 @@ public struct ELMTextField: View {
 
             // Bar
             ZStack {
-                
-                // Bar background
-                RoundedRectangle(cornerRadius: 20).foregroundColor(Color.secondary.opacity(0.40))
 
                 // Bar controls
                 HStack(spacing: 0) {
 
                     // Symbol, if any
                     if let symbol = symbol {
-                        Image(systemName: symbol).foregroundColor(.secondary).padding(.leading, 15)
-                            .padding(.trailing, 5)
+                        Image(systemName: symbol).foregroundColor(.secondary).padding(.leading, 12)
+                            .padding(.trailing, 1)
                     } else {
                         EmptyView().padding(5)
                     }
@@ -60,14 +57,14 @@ public struct ELMTextField: View {
                     if !text.isEmpty {
                         Image(systemName: "xmark.circle.fill")
                         .imageScale(.small)
-                        .padding(.horizontal, 15).foregroundColor(.secondary).onTapGesture(perform: {text = ""})
-                            .transition(.identity)
+                        .padding(.horizontal, 10).foregroundColor(.secondary).onTapGesture(perform: {text = ""})
+                            .transition(AnyTransition.identity.animation(Animation.easeIn.delay(0.5)))
                     } else {
                         EmptyView()
                     }
                    
 
-                }
+                }.modifier(WindowModifier(shadowRadius: 3, padding: 2))
 
             }
 
@@ -99,7 +96,7 @@ public struct ELMTextField: View {
 @available(iOS 13.0, *)
 extension ELMTextField {
     
-    func barLabel(systemName: String) -> Self {
+    func symbol(systemName: String) -> Self {
         
         var s = self
         s.symbol = systemName
@@ -123,7 +120,8 @@ fileprivate struct Consumer: View {
     @State private var text: String = "Initial text"
     
     var body: some View {
-        ELMTextField(title: "MyTextField", text: $text).barLabel(systemName: "magnifyingglass").submit(label: "Cancel", action: {text = ""})
+        ELMTextField(title: "MyTextField", text: $text).symbol(systemName: "at")
+//            .submit(label: "Cancel", action: {text = ""})
     }
     
 }

@@ -36,7 +36,7 @@ public struct ELMCard<Content: View, MenuLabel: View, MenuContent: View>: View {
             }
             
             content()
-        }.modifier(WindowModifier(borderRadius: 15, shadowRadius: 6, padding: 10))
+        }.modifier(WindowModifier(shadowRadius: 3, padding: 10))
         
     }
     
@@ -83,5 +83,6 @@ struct SwiftUIView_Previews: PreviewProvider {
     
     static var previews: some View {
         Consumer()
+            .preferredColorScheme(.dark)
     }
 }
