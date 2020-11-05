@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 @available(iOS 13.0, *)
 public struct ELMTextField: View {
 
@@ -36,13 +37,10 @@ public struct ELMTextField: View {
 
         HStack {
 
-            // Bar
             ZStack {
 
-                // Bar controls
                 HStack(spacing: 0) {
 
-                    // Symbol, if any
                     if let symbol = symbol {
                         Image(systemName: symbol).foregroundColor(.secondary).padding(.leading, 12)
                             .padding(.trailing, 1)
@@ -50,10 +48,8 @@ public struct ELMTextField: View {
                         EmptyView().padding(5)
                     }
 
-                    //
-                    TextField(title, text: $text, onEditingChanged: onEditingChanged ?? __nilEditChange, onCommit: onCommit ?? {}).padding(7)
+                    TextField(title, text: $text, onEditingChanged: onEditingChanged ?? __nilEditChange, onCommit: onCommit ?? {}).padding(5)
 
-                    
                     if !text.isEmpty {
                         Image(systemName: "xmark.circle.fill")
                         .imageScale(.small)
@@ -64,7 +60,7 @@ public struct ELMTextField: View {
                     }
                    
 
-                }.modifier(WindowModifier(shadowRadius: 3, padding: 2))
+                }.modifier(FrameModifier(borderRadius: 5,shadowRadius: 3, padding: 6))
 
             }
 
@@ -76,28 +72,19 @@ public struct ELMTextField: View {
                 .transition(.sideslide(.trailing))
             }
         }.animation(.easeIn(duration: 0.1)).frame(maxHeight: 40)
-
     }
 
     private var __nilEditChange: (Bool) -> Void = { _ in
         Void()
     }
-    
-//    private var clearSymbol: Image? {
-//        if !text.isEmpty {
-//            return Image(systemName: "xmark.circle.fill")
-//        } else {
-//            return nil
-//        }
-//    }
 
 }
+
 
 @available(iOS 13.0, *)
 extension ELMTextField {
     
     func symbol(systemName: String) -> Self {
-        
         var s = self
         s.symbol = systemName
         return s
@@ -105,15 +92,14 @@ extension ELMTextField {
     }
     
     func submit(label: String, action: @escaping () -> Void) -> Self {
-        
         var s = self
         s.submitLabel = label
         s.onSubmit = action
         return s
         
     }
-    
 }
+
 
 fileprivate struct Consumer: View {
     
@@ -121,7 +107,7 @@ fileprivate struct Consumer: View {
     
     var body: some View {
         ELMTextField(title: "MyTextField", text: $text).symbol(systemName: "at")
-//            .submit(label: "Cancel", action: {text = ""})
+            .submit(label: "Cancel", action: {text = ""})
     }
     
 }
@@ -129,6 +115,10 @@ fileprivate struct Consumer: View {
 struct TextField_Previews: PreviewProvider {
     static var previews: some View {
         Consumer()
+            .preferredColorScheme(.light)
+        Consumer()
+            .preferredColorScheme(.dark)
+
     }
 }
 

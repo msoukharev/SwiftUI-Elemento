@@ -34,18 +34,18 @@ public struct ELMToggle: View {
         
         HStack {
             
-            Image(systemName: symbol, fill: toggle)
+            Image(systemName: symbol, fill: toggle).imageScale(.medium).padding(2)
             
             // Text label if any
             if let label = label, toggle {
-                Text(label).transition(.sideslide(.trailing))
+                Text(label).transition(.sideslide(.trailing)).padding(0)
             }
             
         }
         .onTapGesture {
             self.toggle.toggle()
         }
-        .padding(12).background(toggle ? onColor : Color.secondary.opacity(0.30)).clipShape(Capsule())
+        .padding(12).background(toggle ? onColor : Color.secondaryBackground).clipShape(Capsule())
         .animation(.easeIn(duration: 0.2))
         
     }
@@ -57,15 +57,24 @@ struct ELMToggle_Previews: PreviewProvider {
     
     private struct ConsumerView: View {
         @State private var toggle: Bool = false
+        @State private var toggle1: Bool = true
         var body: some View {
             VStack {
-                ELMToggle(onColor: .red, symbol: "star", toggle: $toggle, label: "Important")
+                VStack {
+                    Text("How would you describe your trip?")
+                }.modifier(FrameModifier()).padding()
+                HStack {
+                ELMToggle(onColor: .orange, symbol: "star", toggle: $toggle, label: "Important")
+                    
+                    ELMToggle(onColor: .purple, symbol: "person", toggle: $toggle1, label: "Social")
+                }
             }
         }
     }
     
     static var previews: some View {
         ConsumerView()
+            .preferredColorScheme(.dark)
     }
 }
 

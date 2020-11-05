@@ -17,8 +17,8 @@ public struct ELMRatingBar: View {
     
     @Binding private var score: Int?
     private var symbol: String
-    private var spacing: CGFloat? = 20
-    private var scale: CGFloat = 1.3
+    private var spacing: CGFloat = 25
+    private var scale: CGFloat = 1.5
     
     public init(score: Binding<Int?>, symbol: String) {
         self._score = score
@@ -29,9 +29,9 @@ public struct ELMRatingBar: View {
         
         HStack(spacing: spacing) {
             ForEach(1..<6) { pos in
-    
-                Image(systemName: symbol, fill:
-                                  (pos > score ?? 0) ? false : true)
+                let fill = (pos > score ?? 0) ? false : true
+                Image(systemName: symbol, fill: fill)
+                    .foregroundColor(fill ? .accentColor : .primary)
                     .scaleEffect(scale)
                     .onTapGesture {
                     withAnimation(.easeIn(duration: 0.25)) {
@@ -54,7 +54,7 @@ public extension ELMRatingBar {
      */
     func scale(_ scale: CGFloat) -> ELMRatingBar {
         var modified = self
-        modified.scale = 1.3 * scale
+        modified.scale = 1.5 * scale
         return modified
     }
     
@@ -63,12 +63,25 @@ public extension ELMRatingBar {
      */
     func spacing(_ spacing: CGFloat) -> ELMRatingBar {
         var modified = self
-        modified.spacing = max(20, spacing)
+        modified.spacing = max(25, spacing)
         return modified
     }
     
 }
 
-fileprivate class Consumer: ObservableObject {
-    @Published var score: Int?
+fileprivate struct Consumer: View {
+    @State var score: Int? = nil
+    
+    var body: some View {
+        VStack {
+            ELMRatingBar(score: $score, symbol: "star").scale(1.3).spacing(40).accentColor(.green)
+            Text("\(self.score ?? -1)")
+        }
+    }
+}
+
+struct RatingBar_Previews: PreviewProvider {
+    static var previews: some View {
+        Consumer()
+    }
 }

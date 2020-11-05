@@ -11,11 +11,8 @@ import SwiftUI
 extension Image {
 
     init(systemName: String, fill: Bool) {
-        var name = systemName
-        if !fill {
-            name = name.replacingOccurrences(of: ".fill", with: "")
-        }
-        self.init(systemName: name)
+        let name = systemName.replacingOccurrences(of: ".fill", with: "")
+        self.init(systemName: fill ? name + ".fill" : name)
     }
 
 }

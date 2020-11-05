@@ -11,9 +11,7 @@ import SwiftUI
  Adds a border and a shadow around it to the modified view
  */
 @available(iOS 13.0, *)
-public struct WindowModifier: ViewModifier {
-    
-    typealias Paddings = (leading: CGFloat, trailing: CGFloat, top: CGFloat, bottom: CGFloat)
+public struct FrameModifier: ViewModifier {
     
     private var borderRadius: CGFloat
     private var shadowRadius: CGFloat
@@ -32,7 +30,7 @@ public struct WindowModifier: ViewModifier {
     
     public func body(content: Content) -> some View {
         
-        content.padding(padding).background(Color.tertiaryBackground).clipShape(RoundedRectangle(cornerRadius: 10)).border(Color.clear).shadow(color: Color.secondaryBackground, radius: shadowRadius, x: 0, y: shadowRadius * 0.2)
+        content.padding(padding).background(Color.secondaryBackground).clipShape(RoundedRectangle(cornerRadius: 10)).border(Color.clear)//.shadow(color: Color.black.opacity(0.1), radius: shadowRadius, x: 0, y: shadowRadius * 0.2)
         
     }
     
@@ -41,18 +39,18 @@ public struct WindowModifier: ViewModifier {
 struct WindowModifier_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Text("1")
-            Text("1")
-            Text("1")
-            Text("1")
-        }.preferredColorScheme(.light).modifier(WindowModifier()).modal(active: false) {
-            VStack{
-            Text("Some stuff again and again, heh")
-            Text("Some stuff again and again, heh")
-            Text("Some stuff again and again, heh")
-            Text("Some stuff again and again, heh")
-            Text("Some stuff again and again, heh")
-            }
-        }
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+        }.preferredColorScheme(.light).modifier(FrameModifier()).preferredColorScheme(.dark)
+        VStack {
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+            Text("_______________________")
+        }.preferredColorScheme(.light).modifier(FrameModifier()).preferredColorScheme(.light)
     }
 }
