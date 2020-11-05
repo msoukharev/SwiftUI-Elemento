@@ -13,7 +13,7 @@ import SwiftUI
  The decision to limit the rating range is motivated by an optimal user experience. The symbols should be large enough for user to be able to tap on them. At the same time, the rating bar should be able to fit on smaller devices such as an iPhone.
  */
 @available(iOS 13.0, *)
-public struct ELMRatingBar: View {
+public struct EMRatingBar: View {
     
     @Binding private var score: Int?
     private var symbol: String
@@ -47,12 +47,12 @@ public struct ELMRatingBar: View {
 }
 
 @available(iOS 13.0, *)
-public extension ELMRatingBar {
+public extension EMRatingBar {
     
     /**
      Sets the scale factor relative to default. (Default is large image scale, 1.3 scale effect).
      */
-    func scale(_ scale: CGFloat) -> ELMRatingBar {
+    func scale(_ scale: CGFloat) -> EMRatingBar {
         var modified = self
         modified.scale = 1.5 * scale
         return modified
@@ -61,7 +61,7 @@ public extension ELMRatingBar {
     /**
      Sets the amount of spacing between the rating bar symbols. Minimum 25.0.
      */
-    func spacing(_ spacing: CGFloat) -> ELMRatingBar {
+    func spacing(_ spacing: CGFloat) -> EMRatingBar {
         var modified = self
         modified.spacing = max(25, spacing)
         return modified
@@ -74,7 +74,7 @@ fileprivate struct Consumer: View {
     
     var body: some View {
         VStack {
-            ELMRatingBar(score: $score, symbol: "star").scale(1.3).spacing(40).accentColor(.green)
+            EMRatingBar(score: $score, symbol: "star").scale(1.3).spacing(40).accentColor(.green)
             Text("\(self.score ?? -1)")
         }
     }
