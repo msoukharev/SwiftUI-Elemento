@@ -84,7 +84,7 @@ struct EMSwitch_Previews: PreviewProvider {
             VStack {
                 VStack {
                     Text("How would you describe your trip?")
-                }.modifier(FrameModifier()).padding()
+                }
                 HStack {
                     EMSwitch(symbol: "star", toggle: $toggle, label: "Important", mode: .contract).accentColor(.orange)
                     

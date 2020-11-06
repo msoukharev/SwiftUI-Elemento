@@ -44,7 +44,7 @@ public struct ELMModalView<Background: View, Overlay: View>: View {
             backgroundView.overlay(active ? Color.primary.opacity(0.07) : Color.clear)
 
             if active {
-                overlayView().modifier(WindowModifier())
+                overlayView()
             }
             
         }.animation(.default)

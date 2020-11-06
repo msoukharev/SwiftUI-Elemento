@@ -60,7 +60,7 @@ public struct EMTextField: View {
                     }
                    
 
-                }.modifier(FrameModifier(borderRadius: 5,shadowRadius: 3, padding: 6))
+                }
 
             }
 
