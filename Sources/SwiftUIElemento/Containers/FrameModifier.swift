@@ -11,32 +11,30 @@ import SwiftUI
  Adds a border and a shadow around it to the modified view
  */
 @available(iOS 13.0, *)
-public struct FrameModifier: ViewModifier {
+public struct FrameModifier<Background: View, ClipShape: Shape>: ViewModifier {
     
-    private var borderRadius: CGFloat
-    private var shadowRadius: CGFloat
     private var padding: EdgeInsets
-    
-    public init(borderRadius: CGFloat = 15, shadowRadius: CGFloat = 10, padding: CGFloat = 15) {
-        self.init(borderRadius: borderRadius, shadowRadius: shadowRadius, padding: EdgeInsets(top: padding, leading: padding, bottom: padding, trailing: padding))
-    }
-    
-    public init(borderRadius: CGFloat = 15, shadowRadius: CGFloat = 10, padding: EdgeInsets) {
-        self.borderRadius = borderRadius
-        self.shadowRadius = shadowRadius
-        self.padding = padding
-    }
-    
+    private var background: Background
+    private var clipShape: ClipShape
     
     public func body(content: Content) -> some View {
         
-        content.padding(padding).background(Color.secondaryBackground).clipShape(RoundedRectangle(cornerRadius: 10)).border(Color.clear)//.shadow(color: Color.black.opacity(0.1), radius: shadowRadius, x: 0, y: shadowRadius * 0.2)
+        content.padding(padding).background(background).clipShape(clipShape)
         
     }
     
 }
 
-struct WindowModifier_Previews: PreviewProvider {
+@available(iOS 13.0, *)
+public extension FrameModifier where ClipShape: View {
+    
+    init(padding: CGFloat = 15, background: Background, clipShape: ClipShape) {
+        self.init(padding: EdgeInsets(top: padding, leading: padding, bottom: padding, trailing: padding), background: background, clipShape: clipShape)
+    }
+    
+}
+
+struct FrameModifier_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Text("_______________________")
@@ -44,13 +42,13 @@ struct WindowModifier_Previews: PreviewProvider {
             Text("_______________________")
             Text("_______________________")
             Text("_______________________")
-        }.preferredColorScheme(.light).modifier(FrameModifier()).preferredColorScheme(.dark)
+        }.preferredColorScheme(.light).modifier(FrameModifier(padding: 25, background: LinearGradient(gradient: Gradient.init(colors: [.blue, .white]), startPoint: .top, endPoint: .bottom), clipShape: RoundedRectangle(cornerRadius: 10))).preferredColorScheme(.dark)
         VStack {
             Text("_______________________")
             Text("_______________________")
             Text("_______________________")
             Text("_______________________")
             Text("_______________________")
-        }.preferredColorScheme(.light).modifier(FrameModifier()).preferredColorScheme(.light)
+        }.preferredColorScheme(.light).modifier(FrameModifier(padding: 25, background: LinearGradient(gradient: Gradient.init(colors: [.blue, .white]), startPoint: .top, endPoint: .bottom), clipShape: RoundedRectangle(cornerRadius: 10))).preferredColorScheme(.dark)
     }
 }
