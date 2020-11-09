@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftUIElemento",
+    name: "Elemento",
     platforms: [
         .iOS(SupportedPlatform.IOSVersion.v14)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "SwiftUIElemento",
-            targets: ["SwiftUIElemento"]),
+            name: "Elemento",
+            targets: ["Elemento"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,10 +23,10 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "SwiftUIElemento",
+            name: "Elemento",
             dependencies: [.byName(name: "Introspect")]),
         .testTarget(
-            name: "SwiftUIElementoTests",
-            dependencies: ["SwiftUIElemento"]),
+            name: "ElementoTests",
+            dependencies: ["Elemento"]),
     ]
 )

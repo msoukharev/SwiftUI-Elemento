@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-public protocol FrameStyle: ViewModifier {}
-
 /**
  Adds a border and a shadow around it to the modified view
  */

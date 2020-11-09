@@ -42,7 +42,7 @@ public struct SwitchLabel: View {
         .onTapGesture {
             self.toggle.toggle()
         }
-        .padding(12).background(toggle ? Color.accentColor : Color.secondaryBackground).clipShape(Capsule())
+        .padding(9).background(toggle ? Color.accentColor : Color.secondaryBackground).clipShape(Capsule())
         // Makes it look more dynamic.
         .animation(.easeIn(duration: (self.mode == Mode.static) ? 0.15 : 0.2))
         
