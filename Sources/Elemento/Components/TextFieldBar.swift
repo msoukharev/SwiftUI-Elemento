@@ -32,7 +32,6 @@ public struct TextFieldBar: View {
     private var onSubmit: Optional<() -> Void> = nil
     private var submitLabel: String?
     
-    
     public var body: some View {
 
         HStack {
@@ -100,6 +99,24 @@ extension TextFieldBar {
     }
 }
 
+//@available(iOS 13.0, *)
+//public extension TextFieldBar {
+//
+//    enum FillMode {
+//        case bar, textfield
+//    }
+//
+//    @ViewBuilder func container<Style: ContainerStyle>(_ style: Style, mode: Self.FillMode) -> some View {
+//        switch mode {
+//        case Self.FillMode.bar:
+//            view = self
+//            view.
+//        case Self.FillMode.textfield:
+//
+//        }
+//    }
+//
+//}
 
 fileprivate struct Consumer: View {
     
@@ -107,7 +124,7 @@ fileprivate struct Consumer: View {
     
     var body: some View {
         TextFieldBar(title: "MyTextField", text: $text).symbol(systemName: "at")
-            .submit(label: "Cancel", action: {text = ""})
+            .submit(label: "Cancel", action: {text = ""}).modifier(ContainerModifier(background: Color.yellow, clipShape: Capsule()))
     }
     
 }

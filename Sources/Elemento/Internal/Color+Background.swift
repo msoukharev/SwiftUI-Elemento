@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+public extension Color {
     
     static let background = Self.init(UIColor.systemBackground)
     

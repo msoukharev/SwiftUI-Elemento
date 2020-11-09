@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftUIElemento
+@testable import Elemento
 
 final class SwiftUIElementoTests: XCTestCase {
     func testExample() {

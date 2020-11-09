@@ -39,11 +39,4 @@ public extension SolidContainer {
 }
 
 
-struct SolidBackgroundFrame_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello world").container(SolidContainer(clipShape: Capsule()))
-    }
-}
-
-
 
