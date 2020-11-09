@@ -14,14 +14,14 @@ import SwiftUI
  Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
  */
 @available(iOS 13.0, *)
-public struct EMSwitch: View {
+public struct SwitchLabel: View {
     
     @Binding private var toggle: Bool
     private var symbol: String
     private var label: String?
     private var mode: Self.Mode
     
-    public init(symbol: String, toggle: Binding<Bool>, label: String? = nil, mode: EMSwitch.Mode) {
+    public init(symbol: String, toggle: Binding<Bool>, label: String? = nil, mode: SwitchLabel.Mode) {
         self._toggle = toggle
         self.symbol = symbol
         self.label = label
@@ -86,11 +86,11 @@ struct EMSwitch_Previews: PreviewProvider {
                     Text("How would you describe your trip?")
                 }
                 HStack {
-                    EMSwitch(symbol: "star", toggle: $toggle, label: "Important", mode: .contract).accentColor(.orange)
+                    SwitchLabel(symbol: "star", toggle: $toggle, label: "Important", mode: .contract).accentColor(.orange)
                     
-                    EMSwitch(symbol: "person", toggle: $toggle1, label: "Social", mode: .expand).accentColor(.purple)
+                    SwitchLabel(symbol: "person", toggle: $toggle1, label: "Social", mode: .expand).accentColor(.purple)
                     
-                    EMSwitch(symbol: "person", toggle: $toggle2, label: "Social", mode: .static).accentColor(.green)
+                    SwitchLabel(symbol: "person", toggle: $toggle2, label: "Social", mode: .static).accentColor(.green)
                 }
             }
         }

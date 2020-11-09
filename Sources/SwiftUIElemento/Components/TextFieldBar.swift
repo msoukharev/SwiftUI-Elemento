@@ -9,7 +9,7 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-public struct EMTextField: View {
+public struct TextFieldBar: View {
 
     @Binding private var text: String
     private var title: String
@@ -82,7 +82,7 @@ public struct EMTextField: View {
 
 
 @available(iOS 13.0, *)
-extension EMTextField {
+extension TextFieldBar {
     
     func symbol(systemName: String) -> Self {
         var s = self
@@ -106,7 +106,7 @@ fileprivate struct Consumer: View {
     @State private var text: String = "Initial text"
     
     var body: some View {
-        EMTextField(title: "MyTextField", text: $text).symbol(systemName: "at")
+        TextFieldBar(title: "MyTextField", text: $text).symbol(systemName: "at")
             .submit(label: "Cancel", action: {text = ""})
     }
     

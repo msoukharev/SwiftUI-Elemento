@@ -36,9 +36,6 @@ public struct ELMCard<Content: View, MenuLabel: View, MenuContent: View>: View {
             }
             
             content()
-        }.modal(active: true) {
-            Text("Hi").frameStyle(SolidFrame(clipShape: RoundedRectangle(cornerRadius: 10)))
-        
         }
         
     }

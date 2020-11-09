@@ -9,7 +9,7 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-public struct SolidFrame<ClipShape: Shape>: FrameStyle {
+public struct SolidContainer<ClipShape: Shape>: ContainerStyle {
     
     private var padding: EdgeInsets
     private var clipShape: ClipShape
@@ -21,12 +21,13 @@ public struct SolidFrame<ClipShape: Shape>: FrameStyle {
     }
     
     public func body(content: Content) -> some View {
-        return content.frameStyle(FrameModifier(padding: padding, background: color, clipShape: clipShape))
+        return content.container(SolidContainer(padding: padding, color: color, clipShape: clipShape))
     }
 }
 
 
-public extension SolidFrame {
+@available(iOS 13.0, *)
+public extension SolidContainer {
     
     init(clipShape: ClipShape) {
         self.init(padding: 15, color: Color.secondaryBackground, clipShape: clipShape)
@@ -40,7 +41,7 @@ public extension SolidFrame {
 
 struct SolidBackgroundFrame_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello world").frameStyle(SolidFrame(clipShape: Capsule()))
+        Text("Hello world").container(SolidContainer(clipShape: Capsule()))
     }
 }
 
