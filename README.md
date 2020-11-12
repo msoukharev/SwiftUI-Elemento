@@ -14,13 +14,4 @@ Clone the repository and feel free to add your UI elements or models. The featur
 
 ## Getting started
 
-Get started using SwiftPM:
-
-1. Create or open your existing iOS project
-2. Go to File -> Swift Packages -> Add Package Dependency
-3. Enter this repo http url
-
-## Dependencies
-
-* SwiftUI Introspect [0.1.0] https://github.com/siteline/SwiftUI-Introspect
-
+Download the package with its GitHub url using Swift Package Manager through XCode.

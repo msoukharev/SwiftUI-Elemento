@@ -21,7 +21,7 @@ public struct SolidContainer<ClipShape: Shape>: ContainerStyle {
     }
     
     public func body(content: Content) -> some View {
-        return content.container(SolidContainer(padding: padding, color: color, clipShape: clipShape))
+        return content.container(ContainerModifier(padding: padding, background: color, clipShape: clipShape))
     }
 }
 

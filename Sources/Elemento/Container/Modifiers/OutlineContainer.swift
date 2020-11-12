@@ -25,7 +25,7 @@ public struct OutlineContainer<ClipShape: Shape, StrokeStyle: ShapeStyle>: Conta
     }
     
     public func body(content: Content) -> some View {
-        return content.container(OutlineContainer(padding: padding, clipShape: clipShape, strokeStyle: strokeStyle)).overlay(clipShape.stroke(strokeStyle, lineWidth: strokeWidth))
+        content.container(ContainerModifier(padding: padding, background: Color.clear, clipShape: clipShape))
     }
 }
 

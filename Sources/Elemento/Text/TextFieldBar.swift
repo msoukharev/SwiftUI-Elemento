@@ -32,6 +32,7 @@ public struct TextFieldBar: View {
     private var onSubmit: Optional<() -> Void> = nil
     private var submitLabel: String?
     
+    
     public var body: some View {
 
         HStack {
@@ -52,7 +53,7 @@ public struct TextFieldBar: View {
                     if !text.isEmpty {
                         Image(systemName: "xmark.circle.fill")
                         .imageScale(.small)
-                        .padding(.horizontal, 10).foregroundColor(.secondary).onTapGesture(perform: {text = ""})
+                        .padding(.horizontal, 7).foregroundColor(.secondary).onTapGesture(perform: {text = ""})
                             .transition(AnyTransition.identity.animation(Animation.easeIn.delay(0.5)))
                     } else {
                         EmptyView()
@@ -67,8 +68,8 @@ public struct TextFieldBar: View {
             if let submitLabel = submitLabel, let onSubmit = onSubmit, !text.isEmpty {
                 Button(action: onSubmit) {
                     Text(submitLabel)
-                }
-                .transition(.sideslide(.trailing))
+                }.padding(.trailing, 10)
+                .transition(.sideslide(.bottom))
             }
         }.animation(.easeIn(duration: 0.1)).frame(maxHeight: 40)
     }
@@ -99,24 +100,6 @@ extension TextFieldBar {
     }
 }
 
-//@available(iOS 13.0, *)
-//public extension TextFieldBar {
-//
-//    enum FillMode {
-//        case bar, textfield
-//    }
-//
-//    @ViewBuilder func container<Style: ContainerStyle>(_ style: Style, mode: Self.FillMode) -> some View {
-//        switch mode {
-//        case Self.FillMode.bar:
-//            view = self
-//            view.
-//        case Self.FillMode.textfield:
-//
-//        }
-//    }
-//
-//}
 
 fileprivate struct Consumer: View {
     
@@ -124,15 +107,13 @@ fileprivate struct Consumer: View {
     
     var body: some View {
         TextFieldBar(title: "MyTextField", text: $text).symbol(systemName: "at")
-            .submit(label: "Cancel", action: {text = ""}).modifier(ContainerModifier(background: Color.yellow, clipShape: Capsule()))
+            .submit(label: "Cancel", action: {text = ""}).container(SolidContainer(padding: 5, color: Color.gray, clipShape: RoundedRectangle(cornerRadius: 30))).frame(width: 310, height: 200, alignment: .center)
     }
     
 }
 
 struct TextField_Previews: PreviewProvider {
     static var previews: some View {
-        Consumer()
-            .preferredColorScheme(.light)
         Consumer()
             .preferredColorScheme(.dark)
 
