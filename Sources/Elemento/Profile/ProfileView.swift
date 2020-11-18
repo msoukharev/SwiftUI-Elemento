@@ -76,7 +76,7 @@ public extension ProfileView {
 }
 
 @available(iOS 13.0, *)
-public extension Profile {
+public extension ProfileView {
     
     func profileStyle(_ style: Self.Style) -> Self {
         var s = self
@@ -90,7 +90,7 @@ public extension Profile {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            Profile(image: Image(systemName: "star"), name: Text("John Johnson").font(.title2)) {
+            ProfileView(image: Image(systemName: "star"), name: Text("John Johnson").font(.title2)) {
                 Text("Phone number: 111-111-1111")
             }.profileStyle(.vertical).container(SolidContainer(clipShape: RoundedRectangle(cornerRadius: 20)))
         }.preferredColorScheme(.dark)
