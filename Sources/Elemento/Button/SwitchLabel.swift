@@ -1,10 +1,3 @@
-//
-//  ELMLabelToggle.swift
-//  SwiftUIElemento
-//
-//  Created by Maxim Soukharev on 2020-10-09.
-//
-
 import Foundation
 import SwiftUI
 
@@ -48,7 +41,6 @@ public struct SwitchLabel: View {
         
     }
     
-    
     public struct Mode: Equatable {
         
         private var expandSelected: Bool
@@ -68,8 +60,7 @@ public struct SwitchLabel: View {
         }
         
     }
-    
-    
+
 }
 
 
@@ -100,6 +91,5 @@ struct EMSwitch_Previews: PreviewProvider {
         ConsumerView()
             .preferredColorScheme(.light)
     }
+    
 }
-
-

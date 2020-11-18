@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-10-27.
-//
-
 import SwiftUI
 
 public extension Color {

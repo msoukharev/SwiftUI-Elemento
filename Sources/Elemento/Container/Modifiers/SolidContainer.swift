@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-11-06.
-//
-
 import SwiftUI
 
 
@@ -36,6 +29,7 @@ public extension SolidContainer {
     init(padding: CGFloat = 15, color: Color, clipShape: ClipShape) {
         self.init(padding: EdgeInsets(top: padding, leading: padding, bottom: padding, trailing: padding), color: color, clipShape: clipShape)
     }
+    
 }
 
 

@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-11-09.
-//
-
 import SwiftUI
 
 
@@ -51,6 +44,7 @@ public struct ProfileView<Content: View>: View {
         case vertical
         case horizontal
     }
+    
 }
 
 
@@ -74,6 +68,7 @@ public extension ProfileView {
     }
     
 }
+
 
 @available(iOS 13.0, *)
 public extension ProfileView {

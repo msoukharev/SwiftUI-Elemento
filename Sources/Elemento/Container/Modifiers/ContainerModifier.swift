@@ -1,11 +1,5 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-10-26.
-//
-
 import SwiftUI
+
 
 /**
  Adds a border and a shadow around it to the modified view

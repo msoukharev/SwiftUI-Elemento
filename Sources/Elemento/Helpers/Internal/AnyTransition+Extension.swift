@@ -1,11 +1,5 @@
-//
-//  Transitions.swift
-//  SwiftUIElemento
-//
-//  Created by Maxim Soukharev on 2020-10-09.
-//
-
 import SwiftUI
+
 
 @available(iOS 13.0, *)
 extension AnyTransition {

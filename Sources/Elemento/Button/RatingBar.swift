@@ -1,11 +1,5 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-10-10.
-//
-
 import SwiftUI
+
 
 /**
  A rating bar, to set up a rating from 1 to 5.
@@ -46,6 +40,7 @@ public struct RatingBar: View {
     
 }
 
+
 @available(iOS 13.0, *)
 public extension RatingBar {
     
@@ -69,6 +64,7 @@ public extension RatingBar {
     
 }
 
+
 fileprivate struct Consumer: View {
     @State var score: Int? = nil
     
@@ -78,10 +74,14 @@ fileprivate struct Consumer: View {
             Text("\(self.score ?? -1)")
         }
     }
+    
 }
 
+
 struct RatingBar_Previews: PreviewProvider {
+    
     static var previews: some View {
         Consumer()
     }
+    
 }

@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//
-//
-//  Created by Maxim Soukharev on 2020-10-09.
-//
-
 import SwiftUI
 
 
@@ -31,7 +24,6 @@ public struct TextFieldBar: View {
     private var symbol: String?
     private var onSubmit: Optional<() -> Void> = nil
     private var submitLabel: String?
-    
     
     public var body: some View {
 
@@ -98,6 +90,7 @@ extension TextFieldBar {
         return s
         
     }
+    
 }
 
 
@@ -112,12 +105,15 @@ fileprivate struct Consumer: View {
     
 }
 
+
 struct TextField_Previews: PreviewProvider {
+    
     static var previews: some View {
         Consumer()
             .preferredColorScheme(.dark)
 
     }
+    
 }
 
 

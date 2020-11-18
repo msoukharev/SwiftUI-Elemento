@@ -1,14 +1,8 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Maxim Soukharev on 2020-11-08.
-//
-
 import SwiftUI
 
 
 public protocol ContainerStyle: ViewModifier {}
+
 
 public extension View {
     
