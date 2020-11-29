@@ -4,7 +4,7 @@ import SwiftUI
 /**
  Adds a border and a shadow around it to the modified view
  */
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 11.0, *)
 public struct ContainerModifier<Background: View, ClipShape: Shape>: ContainerStyle {
     
     private var padding: EdgeInsets
@@ -26,7 +26,7 @@ public struct ContainerModifier<Background: View, ClipShape: Shape>: ContainerSt
 }
 
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 11.0, *)
 public extension ContainerModifier {
     
     init(padding: CGFloat = 15, background: Background, clipShape: ClipShape) {

@@ -86,7 +86,10 @@ struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             ProfileView(image: Image(systemName: "star"), name: Text("John Johnson").font(.title2)) {
+                Spacer()
                 Text("Phone number: 111-111-1111")
+                Spacer()
+                Text("Some other crap")
             }.profileStyle(.vertical).container(SolidContainer(clipShape: RoundedRectangle(cornerRadius: 20)))
         }.preferredColorScheme(.dark)
     }

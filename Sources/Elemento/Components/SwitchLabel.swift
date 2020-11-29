@@ -6,16 +6,17 @@ import SwiftUI
 /**
  Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
  */
+#if os(iOS)
 @available(iOS 13.0, *)
 public struct SwitchLabel: View {
     
-    @Binding private var toggle: Bool
+    @Binding private var active: Bool
     private var symbol: String
     private var label: String?
     private var mode: Self.Mode
     
-    public init(symbol: String, toggle: Binding<Bool>, label: String? = nil, mode: SwitchLabel.Mode) {
-        self._toggle = toggle
+    public init(symbol: String, active: Binding<Bool>, label: String? = nil, mode: SwitchLabel.Mode) {
+        self._active = active
         self.symbol = symbol
         self.label = label
         self.mode = mode
@@ -23,21 +24,19 @@ public struct SwitchLabel: View {
     
     public var body: some View {
         
-        HStack {
+        Button(action: {self.active.toggle()}) {
             
-            Image(systemName: symbol, fill: toggle).imageScale(.medium).padding(2)
-            
-            if let label = label, mode.expanded(toggle: toggle) {
-                Text(label).transition(.sideslide(.trailing)).padding(0)
-            }
+            HStack {
+                Image(systemName: symbol, fill: active).imageScale(.medium).padding(2)
+                
+                if let label = label, mode.expanded(toggle: active) {
+                    Text(label).transition(.sideSlide(.trailing)).padding(0)
+                }
+            }.foregroundColor(.primary).padding(8).background(active ? Color.accentColor : Color.secondaryBackground).clipShape(Capsule())
+            .animation(.easeIn(duration: (self.mode == Mode.static) ? 0.05 : 0.15))
             
         }
-        .onTapGesture {
-            self.toggle.toggle()
-        }
-        .padding(9).background(toggle ? Color.accentColor : Color.secondaryBackground).clipShape(Capsule())
-        // Makes it look more dynamic.
-        .animation(.easeIn(duration: (self.mode == Mode.static) ? 0.15 : 0.2))
+        
         
     }
     
@@ -64,7 +63,7 @@ public struct SwitchLabel: View {
 }
 
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 11.0, *)
 struct EMSwitch_Previews: PreviewProvider {
     
     private struct ConsumerView: View {
@@ -77,11 +76,11 @@ struct EMSwitch_Previews: PreviewProvider {
                     Text("How would you describe your trip?")
                 }
                 HStack {
-                    SwitchLabel(symbol: "star", toggle: $toggle, label: "Important", mode: .contract).accentColor(.orange)
+                    SwitchLabel(symbol: "star", active: $toggle, label: "Important", mode: .contract).accentColor(.orange)
                     
-                    SwitchLabel(symbol: "person", toggle: $toggle1, label: "Social", mode: .expand).accentColor(.purple)
+                    SwitchLabel(symbol: "person", active: $toggle1, label: "Social", mode: .expand).accentColor(.purple)
                     
-                    SwitchLabel(symbol: "person", toggle: $toggle2, label: "Social", mode: .static).accentColor(.green)
+                    SwitchLabel(symbol: "person", active: $toggle2, label: "Social", mode: .static).accentColor(.green)
                 }
             }
         }
@@ -93,3 +92,4 @@ struct EMSwitch_Previews: PreviewProvider {
     }
     
 }
+#endif

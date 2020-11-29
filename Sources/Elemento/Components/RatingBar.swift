@@ -6,16 +6,21 @@ import SwiftUI
  
  The decision to limit the rating range is motivated by an optimal user experience. The symbols should be large enough for user to be able to tap on them. At the same time, the rating bar should be able to fit on smaller devices such as an iPhone.
  */
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 11.0, *)
 public struct RatingBar: View {
     
-    @Binding private var score: Int?
+    @Binding private var value: Int?
     private var symbol: String
     private var spacing: CGFloat = 25
-    private var scale: CGFloat = 1.5
-    
-    public init(score: Binding<Int?>, symbol: String) {
-        self._score = score
+    #if os(iOS)
+    private var size: CGFloat = 30
+    private var _min_size: CGFloat { return 30 }
+    #elseif os(macOS)
+    private var size: CGFloat = 20
+    private var _min_size: CGFloat { return 20 }
+    #endif
+    public init(value: Binding<Int?>, symbol: String) {
+        self._value = value
         self.symbol = symbol
     }
     
@@ -23,33 +28,35 @@ public struct RatingBar: View {
         
         HStack(spacing: spacing) {
             ForEach(1..<6) { pos in
-                let fill = (pos > score ?? 0) ? false : true
+                let fill = (pos > value ?? 0) ? false : true
                 Image(systemName: symbol, fill: fill)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size, height: size)
                     .foregroundColor(fill ? .accentColor : .primary)
-                    .scaleEffect(scale)
                     .onTapGesture {
                     withAnimation(.easeIn(duration: 0.25)) {
-                        self.score = pos
+                        self.value = pos
                     }
                 }
                 
             }
-        }
+        }.padding()
         
     }
     
 }
 
 
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 11.0, *)
 public extension RatingBar {
     
     /**
      Sets the scale factor relative to default. (Default is large image scale, 1.3 scale effect).
      */
-    func scale(_ scale: CGFloat) -> RatingBar {
+    func size(_ size: CGFloat) -> RatingBar {
         var modified = self
-        modified.scale = 1.5 * scale
+        modified.size = max(self._min_size, size)
         return modified
     }
     
@@ -65,23 +72,24 @@ public extension RatingBar {
 }
 
 
+@available(iOS 13.0, macOS 11.0, *)
 fileprivate struct Consumer: View {
     @State var score: Int? = nil
     
     var body: some View {
         VStack {
-            RatingBar(score: $score, symbol: "star").scale(1.3).spacing(40).accentColor(.green)
-            Text("\(self.score ?? -1)")
+            RatingBar(value: $score, symbol: "star").accentColor(.green)
         }
     }
-    
+
 }
 
 
+@available(iOS 13.0, macOS 11.0, *)
 struct RatingBar_Previews: PreviewProvider {
     
     static var previews: some View {
-        Consumer()
+        Consumer().modifier(Rounding.small.concat(Padding.init(horizontal: .medium, vertical: .large).concat(BackgroundColor.secondary)))
     }
     
 }

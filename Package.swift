@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Elemento",
     platforms: [
-        .iOS(SupportedPlatform.IOSVersion.v14)
+        .iOS(SupportedPlatform.IOSVersion.v14),.macOS(SupportedPlatform.MacOSVersion.v11)
     ],
     
     products: [
