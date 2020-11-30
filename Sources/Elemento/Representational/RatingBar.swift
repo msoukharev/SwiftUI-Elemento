@@ -70,26 +70,3 @@ public extension RatingBar {
     }
     
 }
-
-
-@available(iOS 13.0, macOS 11.0, *)
-fileprivate struct Consumer: View {
-    @State var score: Int? = nil
-    
-    var body: some View {
-        VStack {
-            RatingBar(value: $score, symbol: "star").accentColor(.green)
-        }
-    }
-
-}
-
-
-@available(iOS 13.0, macOS 11.0, *)
-struct RatingBar_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        Consumer().modifier(Rounding.small.concat(Padding.init(horizontal: .medium, vertical: .large).concat(BackgroundColor.secondary)))
-    }
-    
-}

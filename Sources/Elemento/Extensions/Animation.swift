@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 @available(iOS 13.0, macOS 11.0, *)
 public extension Animation {
     
@@ -19,9 +20,11 @@ public extension Animation {
     func normal () -> Self {
         return self.speed(.normal)
     }
+    
     func fast() -> Self {
         return self.speed(.fast)
     }
+    
     func veryFast() -> Self {
         return self.speed(.veryFast)
     }

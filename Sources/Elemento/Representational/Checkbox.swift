@@ -27,6 +27,7 @@ struct Checkbox: View {
     }
     
     var body: some View {
+        
         HStack(alignment: .top) {
             
             Button(action: {active.toggle()}, label: {
@@ -35,30 +36,8 @@ struct Checkbox: View {
             if let label = label {
                 label
             }
-            
         }.animation(Animation.default.fast())
+    
     }
     
-}
-
-fileprivate struct Consumer: View {
-    
-    @State private var state: Bool = false
-    
-    var body: some View {
-        VStack{
-            Checkbox(active: $state, label: Text("Enable this"))
-//            Checkbox(active: $state, label: Text("Enable this"))
-//            Checkbox(active: $state, label: Text("Enable this"))
-        }
-    }
-    
-    
-}
-
-
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        Consumer()
-    }
 }

@@ -2,14 +2,14 @@ import SwiftUI
 
 
 @available(iOS 13.0, macOS 11.0, *)
-public protocol StyleConformance: ViewModifier {
+public protocol PresetModifier: ViewModifier {
     associatedtype P
     var parameter: P { get }
 }
 
 
 @available(iOS 13.0, macOS 11.0, *)
-public struct Padding: StyleConformance {
+public struct Padding: PresetModifier {
     
     public var parameter: (horizontal: CGFloat, vertical: CGFloat)
     
@@ -43,7 +43,7 @@ public struct Padding: StyleConformance {
 
 
 @available(iOS 13.0, macOS 11.0, *)
-public struct BackgroundColor: StyleConformance {
+public struct BackgroundColor: PresetModifier {
     
     public var parameter: Color
     
@@ -86,7 +86,7 @@ public struct BackgroundColor: StyleConformance {
 
 
 @available(iOS 13.0, macOS 11.0, *)
-public struct Rounding: StyleConformance {
+public struct Rounding: PresetModifier {
     
     public var parameter: CGFloat
     
@@ -107,17 +107,17 @@ public struct Rounding: StyleConformance {
 
 //@available(iOS 13.0, macOS 11.0, *)
 //public struct Border: StyleConformance {
-//    
+//
 //    public var parameter: CGFloat
-//    
+//
 //    private init(width: CGFloat){
 //        self.parameter = width
 //    }
-//    
+//
 //    static let none = Border(0)
-//    
+//
 //    public func body(content: Content) -> some View {
-//        
+//
 //    }
-//    
+//
 //}

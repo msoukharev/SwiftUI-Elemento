@@ -28,8 +28,6 @@ struct SearchBar: View {
             ZStack {
 
                 HStack(spacing: 0) {
-
-                    ZStack {
                         
                         Image(systemName: "magnifyingglass").foregroundColor(.secondary).padding(.leading, 12)
                             .padding(.trailing, 1)
@@ -45,7 +43,6 @@ struct SearchBar: View {
                             })
                         #endif
                                         
-                    }
                     
                     if !text.isEmpty {
                         Image(systemName: "xmark.circle.fill")
@@ -78,22 +75,4 @@ struct SearchBar: View {
         self.text = ""
     }
     
-}
-
-
-fileprivate struct Consumer: View {
-    
-    @State private var query = ""
-    
-    var body: some View {
-        SearchBar(placeholder: "Enter info", text: $query)
-    }
-    
-}
-
-
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        Consumer()
-    }
 }

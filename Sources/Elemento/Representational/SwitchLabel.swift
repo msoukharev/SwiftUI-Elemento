@@ -2,11 +2,10 @@ import Foundation
 import SwiftUI
 
 
-// TODO: Customizable expand/contract behavior
+#if os(iOS)
 /**
  Creates a togglable label with a symbol and optional text. The text is shown when the label is loggled off and disappears when the label is toggled on.
  */
-#if os(iOS)
 @available(iOS 13.0, *)
 public struct SwitchLabel: View {
     
@@ -62,34 +61,4 @@ public struct SwitchLabel: View {
 
 }
 
-
-@available(iOS 13.0, macOS 11.0, *)
-struct EMSwitch_Previews: PreviewProvider {
-    
-    private struct ConsumerView: View {
-        @State private var toggle: Bool = false
-        @State private var toggle1: Bool = true
-        @State private var toggle2: Bool = true
-        var body: some View {
-            VStack {
-                VStack {
-                    Text("How would you describe your trip?")
-                }
-                HStack {
-                    SwitchLabel(symbol: "star", active: $toggle, label: "Important", mode: .contract).accentColor(.orange)
-                    
-                    SwitchLabel(symbol: "person", active: $toggle1, label: "Social", mode: .expand).accentColor(.purple)
-                    
-                    SwitchLabel(symbol: "person", active: $toggle2, label: "Social", mode: .static).accentColor(.green)
-                }
-            }
-        }
-    }
-    
-    static var previews: some View {
-        ConsumerView()
-            .preferredColorScheme(.light)
-    }
-    
-}
 #endif

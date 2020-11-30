@@ -8,10 +8,6 @@ public extension View {
         return self.frame(width: size, height: size)
     }
     
-    func styled<C: StyleConformance>(_ conformance: C) -> some View{
-        return self.modifier(conformance)
-    }
-    
     func erased() -> AnyView {
         return AnyView(self)
     }
