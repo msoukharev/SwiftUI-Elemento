@@ -1,17 +1,26 @@
-# SwiftUIElemento
+# SwiftUI - Elemento
 
-SwiftuiUI Elemento provides SwiftUI elements for sleek and functional user interface.
+Elemento is an extension to SwiftUI framework. It encapsulates view logic from *View*, decouples *View* logic aspects from their representational aspects, provides additional View and ViewModifier structs, and defines a range of values for consistent view modifier values like padding, animation speed, etc.
 
 ## Motivation
 
-SwiftUI Elemento is designed to provide UI components in addition to the stock ones provided by Apple.
+SwiftUI can be used to build applications on all Apple platforms using a single codebase. It is intended to completely replace AppKit and UIKit in the future. SwiftUI, however, has some **limitations**
 
-## Development and contributions
+1. Low number of available UI components
+2. View logic aspects, outside of Combine framework, is most often implemented in View components and thus, coupled to representational aspects. 
 
-The package is in its pre-release version for the forseeable future. SwiftUI component customization is limiter. In order to customize. To make up for it, I am using *SwiftUI Introspect*. Because SwiftUI is constantly evolving and gaining new functionalities and SwiftUI Introspect being still in development, it would be preferable to drop *SwiftUI Instrospect* at some point.
+Elemento is designed to fix these limitations by extending SwiftUI and Combine stack.
 
-Clone the repository and feel free to add your UI elements or models. The feature set is not set in stone yet, and the scope of the project is flexible. 
+## Implementation and Dependencies
+
+Elemento is implemented using *almost* exclusively SwiftUI and Combine frameworks.
+
+>> The exception the extension to *Color* type, which uses AppKit and UIKit to provide different background colors missing from SwiftUI.
+
+## Platforms
+
+The package requires iOS 13.0, macOS 11.0, or later. During the future iterations, I forsee supporting the package for WatchOS as well.
 
 ## Getting started
 
-Download the package with its GitHub url using Swift Package Manager through XCode.
+Start using Elemento using Swift Package Manager. Use the address of the repository: https://github.com/msoukharev/SwiftUI-Elemento/.
