@@ -15,7 +15,7 @@ Elemento is designed to fix these limitations by extending SwiftUI and Combine s
 
 Elemento is implemented using *almost* exclusively SwiftUI and Combine frameworks.
 
->> The exception the extension to *Color* type, which uses AppKit and UIKit to provide different background colors missing from SwiftUI.
+> The exception the extension to *Color* type, which uses AppKit and UIKit to provide different background colors missing from SwiftUI.
 
 ## Platforms
 
