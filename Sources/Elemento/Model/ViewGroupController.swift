@@ -1,10 +1,10 @@
 import SwiftUI
 import Combine
 
+
 @available(iOS 13.0, macOS 11.0, *)
 public class ViewGroupController: ObservableObject {
     
-    // TODO: Internal
     public init(views: Dictionary<String, AnyView>, activeView: String? = nil) {
         self.views = views
         if let _activeView = activeView {
